@@ -14,13 +14,26 @@
         <h1>Cadastrar alimento</h1>
         <p>Informe o alimento a ser cadastrado:</p>
         <p><input type="text" id="ipt_cadastro"><button onclick="cadastrarAlimento()">Cadastrar</button></p>
+        <h3>Verificar quantidade de alimentos em estoque</h3>
         <p><button onclick="verificar()">Verificar quantidade</button></p>
         <div id="resultado"></div>
+        <h3>Verificar quantidade de um determinado elemento em estoque</h3>
         <p>Informe o alimento que deseja verificar em estoque</p>
         <p><input type="text" id="ipt_pesquisa"><button onclick="pesquisar()">Pesquisar</button></p>
         <div id="resultado2"></div>
+        <h3>Verificar estoque</h3>
         <p><button onclick="exibirEstoque()">Exibir estoque</button></p>
         <div id="resultado3"></div>
+        <h3>Atualizar nome de um alimento:</h3>
+        <p>Digite o nome que deseja alterar:<input type="text" id="ipt_nome_antigo"></p>
+        <p>Digite o nome que deseja:<input type="text" id="ipt_novo_nome"></p>
+        <p><button onclick="atualizarNome()">Atualizar</button></p>
+        <div id="resultado4"></div>
+        <h3>Remover um alimento</h3>
+        <p>Digite o nome do alimento que deseja remover do estoque:</p>
+        <p><input type="text" id="ipt_alimento_remover"></p>
+        <button onclick="removerAlimento()">Remover alimento</button>
+        <div id="resultado5"></div>
     </center>
 </body>
 <script>
@@ -90,8 +103,30 @@
             
         }
 
-        
+    }
 
+    function atualizarNome(){
+        let nomeAntigo = ipt_nome_antigo.value;
+        let novoNome = ipt_novo_nome.value;
+
+        if(alimentos.includes(nomeAntigo)){
+            resultado4.innerHTML += `A comida '${nomeAntigo}' foi alterada para '${novoNome}'.`
+        }else{
+            resultado4.innerHTML += `A comida '${nomeAntigo}' não foi encontrada no estoque.`;
+        }
+
+        for(let i = 0; i < alimentos.length; i++){
+            if(alimentos[i] == nomeAntigo){
+                alimentos[i] = novoNome;
+            }
+        }
+        
+    }
+
+    function removerAlimento(){
+        let alimentoRemovido = ipt_alimento_remover.value;
+
+        alimento.splice()
     }
 </script>
 </html>

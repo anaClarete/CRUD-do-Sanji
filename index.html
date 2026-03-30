@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD do Sanji</title>
+</head>
+<body>
+    <center>
+        <h1>Estoque de comida da tripulação Chapéu de Palha</h1>
+        <p>Esse estoque é destinado ao controle de ingredientes e alimentos do chef Sanji</p>
+        <img src="Sanji.png" width="500px">
+
+        <h1>Cadastrar alimento</h1>
+        <p>Informe o alimento a ser cadastrado:</p>
+        <p><input type="text" id="ipt_cadastro"><button onclick="cadastrarAlimento()">Cadastrar</button></p>
+        <p><button onclick="verificar()">Verificar quantidade</button></p>
+        <div id="resultado"></div>
+        <p>Informe o alimento que deseja verificar em estoque</p>
+        <p><input type="text" id="ipt_pesquisa"><button onclick="pesquisar()">Pesquisar</button></p>
+        <div id="resultado2"></div>
+        <p><button onclick="exibirEstoque()">Exibir estoque</button></p>
+        <div id="resultado3"></div>
+    </center>
+</body>
+<script>
+    let alimentos = [];
+
+    function cadastrarAlimento(){
+        let alimento = ipt_cadastro.value;
+        alimentos.push(alimento);
+    }
+
+    function verificar(){
+        resultado.innerHTML = alimentos + "<br>";
+        if(alimentos.length < 3){
+            resultado.innerHTML += `Desse jeito, o Luffy devora até o navio`;
+        }else if(alimentos.length >= 3 && alimentos.length <= 7){
+            resultado.innerHTML += `O comilão do Luffy não vai deixar sobrar nenhuma comida`;
+        }else if(alimentos.length >= 8 && alimentos.length <= 10){
+            resultado.innerHTML += `Assim, talvez sobre um pouco para a tripulação`;
+        }else{
+            resultado.innerHTML += `Desse jeito vai ter comida para todo mundo e ainda consigo guardar um pouco para a senhorita Nami!`;
+        }
+    }
+
+    function pesquisar(){
+        let pesquisa = ipt_pesquisa.value;
+        let qtdEstoque = 0;
+
+        for(let i = 0; i < alimentos.length; i++){
+
+            if(alimentos[i] === pesquisa){
+                qtdEstoque++;
+            }
+        }
+        if(alimentos.includes(pesquisa)){
+            resultado2.innerHTML += `<br>Temos a comida ${pesquisa} e há ${qtdEstoque} unidade(s) dela`;
+        }else{
+            resultado2.innerHTML += `<br>Alguém vai ter que comprar ${pesquisa}, tá fazendo falta...`;
+        }
+    }
+
+    let alimentosEstoque = [];
+    let qtdEstoque = [];
+    function exibirEstoque(){
+        
+        for(let i = 0; i < alimentos.length; i++){
+            let alimentoAtual = alimentos[i];
+            let qtdAlimento = 0;
+            for(let j = 0; j < alimentos.length; j++){
+                if(alimentoAtual == alimentos[j]){
+                    qtdAlimento++;
+                }
+            }
+            if(!alimentosEstoque.includes(alimentoAtual)){
+                alimentosEstoque.push(alimentoAtual);
+                qtdEstoque.push(qtdAlimento);
+            }
+            
+        }
+
+        resultado3.innerHTML = "";
+        for(let l = 0; l < alimentosEstoque.length; l++){
+            if(qtdEstoque[l] > 1){
+                resultado3.innerHTML += `<br>${alimentosEstoque[l]} (${qtdEstoque[l]} unidades)`;
+            }else{
+                resultado3.innerHTML += `<br>${alimentosEstoque[l]} (${qtdEstoque[l]} unidade)`;
+            }
+            
+        }
+
+        
+
+    }
+</script>
+</html>

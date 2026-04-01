@@ -45,7 +45,6 @@
     }
 
     function verificar(){
-        resultado.innerHTML = alimentos + "<br>";
         if(alimentos.length < 3){
             resultado.innerHTML += `Desse jeito, o Luffy devora até o navio`;
         }else if(alimentos.length >= 3 && alimentos.length <= 7){
@@ -126,12 +125,17 @@
     function removerAlimento(){
         let alimentoRemovido = ipt_alimento_remover.value;
 
+        if(alimentos.includes(alimentoRemovido)){
+            resultado5.innerHTML += `<p>A comida '${alimentoRemovido}' foi removida do estoque</p>`;
+        }else{
+            resultado5.innerHTML += `<p>${alimentoRemovido}' não está no estoque</p>`;
+        }
         for(let i = alimentos.length; i >= 0; i--){
             if(alimentos[i] == alimentoRemovido){
                 alimentos.splice(i,1);
             }
         }
-        resultado5.innerHTML += `<br><p>${alimentos}</p>`;
+        resultado5.innerHTML += `<p>Alimentos disponíveis: ${alimentos}</p>`;
     }
 </script>
 </html>

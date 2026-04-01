@@ -126,7 +126,12 @@
     function removerAlimento(){
         let alimentoRemovido = ipt_alimento_remover.value;
 
-        alimento.splice()
+        for(let i = alimentos.length; i >= 0; i--){
+            if(alimentos[i] == alimentoRemovido){
+                alimentos.splice(i,1);
+            }
+        }
+        resultado5.innerHTML += `<br><p>${alimentos}</p>`;
     }
 </script>
 </html>
